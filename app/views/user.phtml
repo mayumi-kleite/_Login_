@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="../../public/css/adm.css">
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+
+    <title> Users </title>
+</head>
+<body> 
+    <div class="container">
+        <div class="card">
+            <div class="topcard">
+                <h2 class="title"> - User data - </h2>
+                <p class="secondtitle"> Check out </p>
+            </div>
+            <div class="icon"></div>
+            <div class="bottomCard">
+                <?php 
+                    foreach($Users as $User) {
+                        echo '<p class="bottomTex"> UserName: '.$User['user_name'].'</p>';
+                        echo '<p class="bottomTex"> E-mail: '.$User['email'].'</p>';
+                        echo '<input type="submit" class="btn" value="Delete">';
+                        echo '<hr class="size">';
+                    }
+                ?>
+                <div class="actionCard">
+                    <button class="action"> <i class="fas fa-heart"></i> </button>
+                    <button class="action"> <i class="fas fa-share-alt"></i> </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

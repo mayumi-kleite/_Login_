@@ -1,0 +1,80 @@
+<?php
+
+namespace App\Controllers;
+
+use Core\Controller;
+use app\Models\User; 
+
+class UserController extends Controller{
+
+    public function index() {
+        $UserModel = new User(); // instanciando model
+        $Users = $UserModel-> getAll();
+        $content = ['Users' => $Users];
+
+        $this->view('teste', $content);
+    }
+
+    public function Name() {
+        $UserModel = new User(); // instanciando model
+        $Users = $UserModel-> getName();
+        //var_dump($Users);
+        $content = ['Users' => $Users];
+
+        $this->view('teste', $content);
+    }
+
+    // INSERIR DADOS 
+    public function insertdata(){
+        $UserModel = new User(); 
+
+        $data = [
+            "id_User" => 6, 
+            "User_name" => "Guilhermy Haru", 
+            "email" => "gui@gmail.com", 
+            "pass_word" => "111"
+        ];
+
+        $result = $UserModel->accept($data);
+        $content = $result ? "Dados armazenasdos com sucesso" : "Falha";
+        $text = ['content' => $content];
+
+        $this->view('insert', $text);
+    }
+
+    // ATUALIZAR DADOS
+    public function change(){ 
+        $UserModel = new User();
+
+        $data = ['User_name' => 'Gustavo Gimenes'];
+        $condition =  ['id_User' => 2];
+
+        $result = $UserModel->update($data, $condition);
+        $content = $result ? "Dados alterados com sucesso" : "Falha";
+
+        $text = ['content' => $content];
+        $this->view('insert', $text);
+    }
+
+    // APAGAR DADOS
+    public function escloi(){ 
+        $UserModel = new User();
+
+        $result = $UserModel->delete(6);
+        $content = $result ? "Dados deletados com sucesso" : "Falha";
+
+        $text = ['content' => $content];
+        $this->view('insert', $text);
+    }
+
+    // MÉTODOS DO REQUEST
+    // var_dump($request->ip()); 
+    // var_dump($request->method());
+    // var_dump($request->isMethod('post'));
+    // var_dump($request->path());
+    // var_dump($request->ssl());
+    // var_dump($request->get());
+    // var_dump($request->fullpath());
+    // var_dump($request->getParams());
+    // var_dump($request->post('Email'));
+}
